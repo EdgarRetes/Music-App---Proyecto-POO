@@ -9,9 +9,9 @@ El programa simula una aplicación de música donde un usuario se puede registra
 
 Para poder diseñar el programa las clases que se utilizaron son las siguientes:
 
-#### MusicAPP
-#### Usuario
+### MusicAPP
+### Usuario
 ##### Básico
 ##### Premium
 ##### VIP
-#### Playlist
+### Playlist
