@@ -11,7 +11,7 @@ Para poder diseñar el programa las clases que se utilizaron son las siguientes:
 
 ### MusicAPP
 ### Usuario
-  ##### Básico
-  ##### Premium
-  ##### VIP
+  #####   Básico
+  #####   Premium
+  #####   VIP
 ### Playlist
