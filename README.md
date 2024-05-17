@@ -40,5 +40,3 @@ El diagrama UML de esta estructura es el siguiente:
 ...
 
 
-![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/c0b428a6-9fb3-41d1-a001-95f549e7608c)
-
