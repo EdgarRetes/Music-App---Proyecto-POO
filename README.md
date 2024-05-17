@@ -35,6 +35,17 @@ Esta clase también tiene una relación de composición como elemento hijo de la
 El diagrama UML de esta estructura es el siguiente:
 ![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/4eed7bc2-49ed-4ef2-ba03-995c2271daa5)
 
+## Limitantes
+
+Algunas cuestiones que identifiqué que podrían faltar en mi aplicación son los siguientes:
+
+- Se debería implementar una base de datos p implementar alguna API para poder buscar canciones ya que actualmente se deja al usuario implementar una canción que el mismo escriba como se llama.
+- Debería haber un sistema para guardar los registros de usuarios y de las playlists paraq ue no se tengan que crear cada vez que corra el programa.
+- Muchas de las funciones tendrán como salida strings los cuales van a ser simbólicos, representando un proceso, ya que idealmente se harían todos los procesos en la aplicación.
+- No está implementado ningún sistema de costos ni el poder hacer cambio de planes en cuanto a las suscripciones.
+- Puede ser que sería más eficiente si la clase usuario tenga un atributo "tipo_de_usuario" para que sea más fácil acceder a que tipo de usuario es cada uno.
+- El hacer una playlist colaborativa puede ser un reto ya que tendría que crearse una copia en el usuario elegido y que cada modificación en esa playlist sea visible para todos. Además que podría haber una cuestión con la validación de cuantos playlists tiene y se le permite a cada usuario tener para poder compartirla sin que pase su número de playlists máximas, o que haya un número determinado de personas con las que puedas compartirla.
+
 ## Ejecución
 
 ...
