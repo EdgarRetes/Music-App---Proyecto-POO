@@ -15,30 +15,30 @@ Esta es la clase principal donde los usuarios pueden registrarse y acceder a su 
 
 ### - Usuario
 
-Esta clase tiene una relación de compisición con MusicApp, siendo la clase hija de esta clase principal (MusicApp). Esta clase se deriva en distintos tipos de usuario por loq ue tiene una relación herencia con todos los tipos de usario que pueden crearse. Las características que comparte con todos sus derivados es que todos tienen nombre, contraseña, id del usuario y playlists, mientras que los métodos que comparten son los de crear y eliminar playlists.
+Esta clase tiene una relación de compisición con MusicApp, siendo la clase hija de esta clase principal (MusicApp). Esta clase se deriva en distintos tipos de usuario por lo que tiene una relación herencia con todos los tipos de usario que pueden crearse. Las características que comparte con todos sus derivados es que todos tienen nombre, contraseña, playlists, y el máximo número de playlists mientras que los métodos que comparten son los de crear y eliminar playlists.
 
 ##### .- Básico
 
-Este tipo de usuario solo es capaz de tener una playlist, definido por su atributo de máximo número de playlists.
+Este tipo de usuario solo es capaz de tener 1 playlist. El usuario va a tener anuncios mientras está en su cuenta determinados por su atributo de números de anuncio por hora, que se mostraran con su método.
 
 ##### .- Premium
 
-El usuario que sea premium tiene la capacidad de tener hasta 5 playlists determinadas por el mismo atributo de maxnum_pl además de poder descargar las canciones que contienen sus listas.
+El usuario que sea premium tiene la capacidad de tener hasta 5 playlists. El usuario tendrá descuentos disponibles para poder comprar artículos de música, además de que es capaz de dercaragr sus playlists.
 
 ##### .- VIP
 
-Por último, este usuario tiene las mismas características que los demás, con la diferencia de que puede tener hasta 12 playlists y hacer sus playlists colaborativas con otros usuarios del sistema.
-
+Por último, este usuario tiene la característica de poder escuchar canciones nuevas antes de que sean lanzadas al público, que están guardadas en su atributo canciones de tipo vector. Además contará con los decuentos del usuario Premium, tener hasta 12 playlists y la capacidad de descargar sus playlists.
 ### - Playlist
 
 Esta clase también tiene una relación de composición como elemento hijo de la clase padre Usuario. cada playlist va a tener un nombre y un vector con las canciones que contiene. Además lo que se puede hacer con cada una es reproducir, pausar, reproducir de manera aleatoria, pasar a la siguiente canción, pasar a la canción previa, añadir canciones y eliminar canciones.
 
 El diagrama UML de esta estructura es el siguiente:
-![Music App drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/f727ffb8-2ddb-4ac5-b38b-5b0bbc8cad81)
+![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/4eed7bc2-49ed-4ef2-ba03-995c2271daa5)
 
 ## Ejecución
 
 ...
 
 
+![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/c0b428a6-9fb3-41d1-a001-95f549e7608c)
 
