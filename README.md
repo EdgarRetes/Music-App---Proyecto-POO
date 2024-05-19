@@ -33,7 +33,7 @@ Por último, este usuario tiene la característica de poder escuchar canciones n
 Esta clase también tiene una relación de composición como elemento hijo de la clase padre Usuario. cada playlist va a tener un nombre y un vector con las canciones que contiene. Además lo que se puede hacer con cada una es reproducir, pausar, reproducir de manera aleatoria, pasar a la siguiente canción, pasar a la canción previa, añadir canciones y eliminar canciones.
 
 El diagrama UML de esta estructura es el siguiente:
-![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/8169f6f9-378e-4f9d-a684-26c19052b5e7)
+![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/a49f9f4d-e4a4-4eab-828e-93b7ae050377)
 
 ## Limitantes
 
