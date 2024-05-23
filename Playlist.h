@@ -11,6 +11,7 @@ private:
     vector<string> canciones;
 
 public:
+    // Sobrecarga en los constructores para cuando se cree una playlist con o sin base de datos.
     Playlist(string name);
     Playlist(string name, vector<string> songs);
 
@@ -44,6 +45,7 @@ Playlist::Playlist(string name, vector<string> songs)
 string Playlist::add_song(string name, string user)
 {
 
+    // Se crea un nuevo string sin espacios ni caracteres especiales para el buscador a partir de la cancion del usuario
     transform(name.begin(), name.end(), name.begin(), ::tolower);
     string new_name;
     for (char c : name)
@@ -77,6 +79,7 @@ string Playlist::add_song(string name, string user)
         if (i > 0)
         {
 
+            // Se normaliza la línea para poder compararla con el input del usuario
             while (getline(s, word, ','))
             {
                 new_w = "";
@@ -91,8 +94,10 @@ string Playlist::add_song(string name, string user)
                 song.push_back(new_w);
                 song_og.push_back(word);
             }
+
             if (song[1] == new_name)
             {
+                // Si se encuentra la cancione en la base de datos igual se actualiza el archivo csv del usuario
                 string pl, current;
                 bool check;
                 fstream leer2;
@@ -132,6 +137,7 @@ string Playlist::add_song(string name, string user)
                 fstream escribir;
                 string archivo = "users/" + user + ".csv";
 
+                // Se sobreescribe el archivo con la actualización en el string
                 ofstream file(archivo, std::ios::trunc);
                 file.close();
 
@@ -139,6 +145,7 @@ string Playlist::add_song(string name, string user)
                 escribir << pl << "\n";
                 escribir.close();
                 leer.close();
+                // Se agrega la canción al vector de canciones
                 canciones.push_back(song_og[1] + " - " + song_og[3]);
 
                 return "\nSe anadio la cancion " + song_og[1] + " de " + song_og[3] + " a la playlist " + nombre;
@@ -155,9 +162,11 @@ string Playlist::add_song(string name, string user)
 
 string Playlist::remove_song(int song, string user)
 {
+    // Se consigue el nombre de la canción a partir del index y se borra de el vector canciones
     string current = canciones[song - 1];
     canciones.erase(canciones.begin() + (song - 1));
 
+    // Después se modifica el csv copiando el contenido pasado menos la canción que se borró
     string new_pl = "Playlist, Canciones\n" + nombre;
     for (int i = 0; i < canciones.size(); i++)
     {
@@ -224,6 +233,7 @@ string Playlist::remove_song(int song, string user)
 
     fstream escribir;
 
+    // Se sobreescribe el archivo con la actualización en el string
     ofstream file(archivo, std::ios::trunc);
     file.close();
 
@@ -237,7 +247,9 @@ string Playlist::remove_song(int song, string user)
 
 void Playlist::play(string user, int &prints)
 {
+    // Variable auxiliar para el caso en que se pare la reproducción
     bool stop = false;
+    // Se itera sobre las canciones para reproducirlas
     for (int j = 0; j < canciones.size(); j++)
     {
         if (prints == 1 || prints == 2)
@@ -247,6 +259,7 @@ void Playlist::play(string user, int &prints)
         string name;
         int tiempo;
 
+        // Se agregan las comillas al string para compararlo con la base de datos
         size_t primeraComilla = canciones[j].find('"');
         if (primeraComilla != string::npos)
         {
@@ -279,10 +292,11 @@ void Playlist::play(string user, int &prints)
             {
                 song.push_back(word);
             }
-
+            // Se encuentra la canción en la base de datos
             if (song[1] == name)
             {
                 string str_tiempo;
+                // Se consigue la duración de la canción y se le quitan las comas
                 size_t primeraComilla = song[12].find('"');
                 if (primeraComilla != string::npos)
                 {
@@ -292,11 +306,13 @@ void Playlist::play(string user, int &prints)
                         str_tiempo = song[12].substr(primeraComilla + 1, segundaComilla - primeraComilla - 1);
                     }
                 }
+                // Si se puede convertir el tiempo a int, se guarda ese valor en la variable
                 if (typeid(stoi(str_tiempo)) == typeid(int) && stoi(str_tiempo) >= 1000)
                 {
 
                     tiempo = stoi(str_tiempo) / 1000;
                 }
+                // Si no, se asignan 60 segundos por default
                 else
                 {
                     tiempo = 60;
@@ -310,9 +326,13 @@ void Playlist::play(string user, int &prints)
         {
             if (prints < 3)
             {
+                // Se imprime la salida en el hilo con un delay de un segundo para simular el método de reproducción
                 cout << "\rReproduciendo: " << canciones[j] << " [" << i + 1 << "s]" << "   Elige una opcion (num):" << flush;
                 this_thread::sleep_for(chrono::seconds(1));
             }
+            // Como está en un hilo se pueden seguir recibiendo inputs lo que cambia la canción que se está reproduciendo
+
+            // Se rompre el ciclo para reproducir la siguiente canción cambaindo el valor de j
             if (prints == 1)
             {
                 stop = false;
@@ -322,6 +342,7 @@ void Playlist::play(string user, int &prints)
                 }
                 break;
             }
+            // Se restan los valores de j y se rompe el ciclo
             else if (prints == 2)
             {
                 stop = false;
@@ -335,15 +356,17 @@ void Playlist::play(string user, int &prints)
                 }
                 break;
             }
+            // Se detiene la reproducción y se señala que hubo un stop para dejar de imprimir la canción
             else if (prints == 3)
             {
                 j--;
-                if (!stop){
+                if (!stop)
+                {
                     cout << "Se detuvo la reproduccion. Pasa a la siguiente cancion para continuar" << endl;
                 }
                 stop = true;
-                break;
             }
+            // Se rompe el ciclo acabando el método
             else if (prints == 4)
             {
                 j = canciones.size();
