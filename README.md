@@ -58,7 +58,10 @@ Segunda entrega -
 ## Ejecución
 
 1. Se debe crear el .exe del archivo utilizando el siguiente comando:
+
+''' markdown
    ''' sh
   g++ main.exe -o main
+'''
 '''
 
