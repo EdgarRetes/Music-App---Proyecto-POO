@@ -247,8 +247,6 @@ string Playlist::remove_song(int song, string user)
 
 void Playlist::play(string user, int &prints)
 {
-    // Variable auxiliar para el caso en que se pare la reproducción
-    bool stop = false;
     // Se itera sobre las canciones para reproducirlas
     for (int j = 0; j < canciones.size(); j++)
     {
@@ -335,7 +333,6 @@ void Playlist::play(string user, int &prints)
             // Se rompre el ciclo para reproducir la siguiente canción cambaindo el valor de j
             if (prints == 1)
             {
-                stop = false;
                 if (j == canciones.size() - 1)
                 {
                     j = -1;
@@ -345,7 +342,6 @@ void Playlist::play(string user, int &prints)
             // Se restan los valores de j y se rompe el ciclo
             else if (prints == 2)
             {
-                stop = false;
                 if (j == 0)
                 {
                     j = canciones.size() - 2;
@@ -355,16 +351,6 @@ void Playlist::play(string user, int &prints)
                     j -= 2;
                 }
                 break;
-            }
-            // Se detiene la reproducción y se señala que hubo un stop para dejar de imprimir la canción
-            else if (prints == 3)
-            {
-                j--;
-                if (!stop)
-                {
-                    cout << "Se detuvo la reproduccion. Pasa a la siguiente cancion para continuar" << endl;
-                }
-                stop = true;
             }
             // Se rompe el ciclo acabando el método
             else if (prints == 4)
