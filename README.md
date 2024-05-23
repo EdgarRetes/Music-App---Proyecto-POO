@@ -57,10 +57,11 @@ Segunda entrega -
 
 ## Ejecución
 
-1. Se debe crear el .exe del archivo utilizando el siguiente comando:
-
+1. Se debe compilar el `main.cpp`, creando el .exe del archivo utilizando el siguiente comando:
 ```
 g++ main.exe -o main
-
 ```
-
+2. Después se utliza este comando para correr el `main.exe`:
+```
+./main.exe
+```
