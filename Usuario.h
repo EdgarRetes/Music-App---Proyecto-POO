@@ -24,6 +24,8 @@ public:
     void add_Playlist(string nombre);
     void remove_Playlist(string nombre);
     void ver_Playlists();
+
+    // Aún falta implementar sobreescritura
     string costo();
     string print_numpl();
 
