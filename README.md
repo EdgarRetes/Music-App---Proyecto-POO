@@ -60,4 +60,5 @@ Segunda entrega -
 1. Se debe crear el .exe del archivo utilizando el siguiente comando:
    ''' sh
   g++ main.exe -o main
+'''
 
