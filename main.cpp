@@ -19,9 +19,7 @@ int playing(Playlist playlist, string user)
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n\n1. Siguiente cancion";
         cout << "\n2. Regresar cancion";
-        cout << "\n3. Parar reproduccion";
-        cout << "\n4. Salir\n"
-             << endl;
+        cout << "\n3. Salir" << endl;
         cin >> opcion;
         if (opcion == 1)
         {
@@ -34,10 +32,6 @@ int playing(Playlist playlist, string user)
         else if (opcion == 3)
         {
             return 3;
-        }
-        else if (opcion == 4)
-        {
-            return 4;
         }
         else
         {
@@ -116,18 +110,13 @@ void playlist_interface(Playlist *playlist, string user)
                 {
                     prints = 2;
                 }
-                else if (action == 3)
-                {
-                    prints = 3;
-                }
 
                 /*Si se sale del modo reproducción dejará de imprimir lo del hilo ya que se le sumo
                 a la variable prints lo que causa que se active una condición dentro del método y
                 se rompe el ciclo de estas opciones*/
-                else if (action == 4)
+                else if (action == 3)
                 {
                     prints = 4;
-                    prints = 0;
                     break;
                 }
             }
