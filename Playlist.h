@@ -237,11 +237,9 @@ string Playlist::remove_song(int song, string user)
 
 void Playlist::play(string user, int &prints)
 {
+    bool stop = false;
     for (int j = 0; j < canciones.size(); j++)
     {
-        bool skip = false;
-        cout << "j: " << j << endl;
-        cout << "Cancion: " << canciones[j] << endl;
         if (prints == 1 || prints == 2)
         {
             prints = 0;
@@ -310,14 +308,14 @@ void Playlist::play(string user, int &prints)
         leer.close();
         while (i < tiempo)
         {
-            if (prints != 4)
+            if (prints < 3)
             {
                 cout << "\rReproduciendo: " << canciones[j] << " [" << i + 1 << "s]" << "   Elige una opcion (num):" << flush;
                 this_thread::sleep_for(chrono::seconds(1));
             }
             if (prints == 1)
             {
-                skip = true;
+                stop = false;
                 if (j == canciones.size() - 1)
                 {
                     j = -1;
@@ -326,6 +324,7 @@ void Playlist::play(string user, int &prints)
             }
             else if (prints == 2)
             {
+                stop = false;
                 if (j == 0)
                 {
                     j = canciones.size() - 2;
@@ -339,6 +338,10 @@ void Playlist::play(string user, int &prints)
             else if (prints == 3)
             {
                 j--;
+                if (!stop){
+                    cout << "Se detuvo la reproduccion. Pasa a la siguiente cancion para continuar" << endl;
+                }
+                stop = true;
                 break;
             }
             else if (prints == 4)
@@ -346,10 +349,6 @@ void Playlist::play(string user, int &prints)
                 j = canciones.size();
             }
             i++;
-        }
-        if (j == canciones.size() - 1 && skip)
-        {
-            j = -1;
         }
     }
     return;
