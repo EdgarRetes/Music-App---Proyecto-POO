@@ -59,7 +59,7 @@ Segunda entrega -
 
 1. Cuando se descarga el zip, se extraen los archivos y tienes que acceder a la carpeta desde la terminal. Dependiendo del folder donde se guarde usas el comando `cd Carpeta` hasta llegar a donde esté la carpeta del proyecto y accedes a ella del mismo modo:
 ```
-cd Music-App-Proyecto---POO
+cd Music-App---Proyecto-POO
 ```
 2. Se debe compilar el `main.cpp`, creando el .exe del archivo utilizando el siguiente comando:
 ```
