@@ -54,14 +54,19 @@ Segunda entrega -
 - Se pueden añadir las mismas canciones a una playlist.
 - El buscador de canciones en la base de datos siempre regresa la primera opción y no todas las canciones con ese nombre para elegir.
 - Al poner una playlist que no existe se traba el programa.
+- Por alguna razón no corre en mac entonces tengo que revisar eso más adelante.
 
 ## Ejecución
 
-1. Se debe compilar el `main.cpp`, creando el .exe del archivo utilizando el siguiente comando:
+1. Cuando se descarga el zip, se extraen los archivos y tienes que acceder a la carpeta desde la terminal. Dependiendo del folder donde se guarde usas el comando `cd Carpeta` hasta llegar a donde esté la carpeta del proyecto y accedes a ella del mismo modo:
 ```
-g++ main.exe -o main
+cd Music-App---Proyecto-POO
 ```
-2. Después se utliza este comando para correr el `main.exe`:
+2. Se debe compilar el `main.cpp`, creando el .exe del archivo utilizando el siguiente comando:
+```
+g++ main.cpp -o main
+```
+3. Después se utliza este comando para correr el `main.exe`:
 ```
 ./main.exe
 ```
