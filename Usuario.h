@@ -14,7 +14,7 @@ using namespace std;
 
 class Usuario
 {
-
+    // Protected porque tiene herencia
 protected:
     string user;
     string contrasena;
@@ -24,6 +24,7 @@ protected:
     int costo_plan;
 
 public:
+    // Sobre carga
     Usuario(string usuario, string password);
     Usuario(string usuario, string password, string tipo);
 
@@ -31,7 +32,7 @@ public:
     void remove_Playlist(string nombre);
     void ver_Playlists();
 
-    // Aún falta implementar sobreescritura
+    // Estas dos funciones tendrán sobreescritura
     string costo();
     string print_numpl();
 
@@ -63,6 +64,7 @@ public:
     string get_user() { return user; }
     string get_contrasena() { return contrasena; }
     string get_plan() { return plan; }
+    // Se regresa la referencia para poder acceder directamente a la playlist
     vector<Playlist> &get_playlists() { return playlists; }
     int get_maxnum_pl() { return maxnum_pl; }
     int get_costo_plan() { return costo_plan; }
@@ -97,12 +99,12 @@ Usuario::Usuario(string usuario, string password, string tipo)
     }
 }
 
+// Se añade al vector y también se actualiza el csv sobreescribiendolo
 void Usuario::add_Playlist(string nombre)
 {
     Playlist playlist(nombre);
     playlists.push_back(playlist);
     fstream leer;
-    // Nombre de la variable para el archivo csv
     fstream escribir;
 
     string archivo = "users/" + user + ".csv";
@@ -126,6 +128,7 @@ void Usuario::add_Playlist(string nombre)
     return;
 }
 
+// Se quita del vector y también se actualiza el csv sobreescribiendolo
 void Usuario::remove_Playlist(string nombre)
 {
     Playlist playlist(nombre);
@@ -175,6 +178,7 @@ void Usuario::remove_Playlist(string nombre)
     return;
 }
 
+// Se ven todas las playlists del usuario en la terminal
 void Usuario::ver_Playlists()
 {
     if (playlists.empty())
@@ -193,6 +197,8 @@ void Usuario::ver_Playlists()
     }
 }
 
+// Aún falta la implementación de los métodos específicos de esta clase
+// Hereda de Usuario
 class Basico : public Usuario
 {
 private:
@@ -208,6 +214,7 @@ public:
     }
 
     string poner_anuncio();
+    // Sobreescritura
     string costo();
     string print_numpl();
 
@@ -219,6 +226,8 @@ public:
     int get_anuncios_por_hora() { return anuncios_por_hora; }
 };
 
+// Aún falta la implementación de los métodos específicos de esta clase
+// Hereda de Usuario
 class Premium : public Usuario
 {
 private:
@@ -234,6 +243,7 @@ public:
     }
 
     string descargar_pl(string nombre);
+    // Sobreescritura
     string costo();
     string print_numpl();
 
@@ -245,6 +255,8 @@ public:
     string get_descuentos() { return descuentos; }
 };
 
+// Aún falta la implementación de los métodos específicos de esta clase
+// Hereda de Usuario
 class VIP : public Usuario
 {
 private:
@@ -263,6 +275,7 @@ public:
 
     string descargar_pl(string nombre);
     string hacer_colab(string user, string nombre);
+    // Sobreescritura
     string escuchar_canciones_nuevas();
     string costo();
     string print_numpl();
