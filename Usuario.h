@@ -3,7 +3,13 @@
 
 #include "Playlist.h"
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <thread>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 class Usuario

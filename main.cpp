@@ -1,8 +1,13 @@
 // Se incluye el archivo MusicApp para tener sus clases disponibles así como los archivos que incluye este archivo
 #include "MusicApp.h"
 
-// Incluir esta librería descarga todos los paquetes estándares necesarios que necesito sin necesidad de incluir muchos
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <thread>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 // Variables globales

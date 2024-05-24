@@ -1,7 +1,14 @@
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <thread>
+#include <fstream>
+#include <sstream>
+#include <algorithm>
+
 using namespace std;
 
 class Playlist

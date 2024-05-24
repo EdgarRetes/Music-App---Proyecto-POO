@@ -4,7 +4,13 @@
 // Se incluye el archivo Usuario para tener sus clases disponibles así como los archivos que incluye este archivo
 #include "Usuario.h"
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <string.h>
+#include <thread>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 class MusicApp
@@ -106,7 +112,7 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     return;
 }
 
-// Acceso al usuario dependiendo de 
+// Acceso al usuario dependiendo de
 bool MusicApp::login(string nombre, string contrasena)
 {
     for (int i = 0; i < 1000; i++)
