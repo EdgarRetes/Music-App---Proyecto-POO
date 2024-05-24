@@ -66,7 +66,7 @@ cd Music-App---Proyecto-POO
 ```
 g++ main.cpp -o main
 ```
-Si pide que la extensión de std=c++11 compilarlo de la siguiente manera:
+   Si pide que la extensión de std=c++11 compilarlo de la siguiente manera:
 ```
 g++ -std=c++11 main.cpp -o main
 ```
