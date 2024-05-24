@@ -29,7 +29,7 @@ public:
     void register_(string nombre, string contrasena, string tipo);
     bool login(string nombre, string contrasena);
 
-    // El return tiene que ser un apuntador de la variable Usuario *usuarios[]
+    // El return tiene que ser un apuntador de la variable
     Usuario *get_usuarios() { return *usuarios; }
 
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario

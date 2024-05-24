@@ -403,8 +403,8 @@ int main()
                 // Verifica si el usuario existe
                 if (app.login(usuario, contrasena))
                 {
-                    /*Si el usuario existe, se define un puntero de tipo Usuario que apunta a la matriz regresada
-                    por el método la cuál es de tipo Usuario *array[]
+                    /*Si el usuario existe, se define un array de apunatdores del tipo Usuario que 
+                    es igual a al array del objeto app
                     */
 
                     Usuario *usuarios = app.get_usuarios();
