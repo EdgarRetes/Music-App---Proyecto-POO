@@ -112,9 +112,10 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     return;
 }
 
-// Acceso al usuario dependiendo de
+// Acceso al usuario dependiendo de su nombre y contraseña
 bool MusicApp::login(string nombre, string contrasena)
 {
+    // Se itera por todos los usuarios del array de usuarios
     for (int i = 0; i < 1000; i++)
     {
         if (usuarios[i]->get_user() == nombre)
