@@ -403,28 +403,22 @@ int main()
                 // Verifica si el usuario existe
                 if (app.login(usuario, contrasena))
                 {
-                    /*Si el usuario existe, se define un array de apunatdores del tipo Usuario que
-                    es igual a al array del objeto app
-                    */
-
-                    Usuario *usuarios = app.get_usuarios();
 
                     // Se recorre toda la matriz utilizando el método en la clase usuario para encontrar el usuario con el que se trabajará
 
                     for (int i = 0; i < 1000; i++)
                     {
-                        if (usuarios[i].get_user() == usuario)
+                        if (app.get_usuarios()[i]->get_user() == usuario)
                         {
                             // Se utiliza el puntero al usuario como parámetro para cambiar directamente sus atributos y no cambiar sus copias
                             // Se llama la función para cargar las playlists del usuario en sus vectores playlists.
-                            cargar_playlists_csv(usuarios[i]);
+                            cargar_playlists_csv(*app.get_usuarios()[i]);
                             // Una vez obtenidas sus playlists entra a la interfaz del usuario.
-                            user_interface(&usuarios[i]);
+                            user_interface(app.get_usuarios()[i]);
                             break;
                         }
                     }
 
-                    delete usuarios;
                     break;
                 }
             }

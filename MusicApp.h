@@ -30,7 +30,16 @@ public:
     bool login(string nombre, string contrasena);
 
     // El return tiene que ser un apuntador de la variable
-    Usuario *get_usuarios() { return *usuarios; }
+    Usuario **get_usuarios()
+    {
+        // cout << "get 0: " << usuarios[0] << endl;
+        // cout << "get 1: " << usuarios[1] << endl;
+        // cout << "get *users: " << typeid(&usuarios).name() << endl;
+        //  cout << usuarios[2] << endl;
+
+        // Imprimi el tipo de dato para saber cual es mi tipo de variable de retorno
+        return usuarios;
+    }
 
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario
     void set_usuarios(Usuario *new_usuarios[1000])
@@ -56,8 +65,13 @@ MusicApp::MusicApp(Usuario *users[1000])
         if (users[i] != nullptr)
         {
             id++;
+            cout << id << endl;
+            // cout << "i: " << i << " dir: " << usuarios[i] << endl;
         }
     }
+
+    // cout << usuarios[0] << endl;
+    // cout << usuarios[1] << endl;
 }
 
 // Método para registrar usuarios
@@ -91,8 +105,10 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     }
     else if (tipo == "VIP")
     {
-
+        // cout << "Contenido antes: " << &usuarios[id] << endl;
         usuarios[id] = new VIP(nombre, contrasena);
+        // cout << "Contenido despues: " << &usuarios[id] << endl;
+        // cout << "Se guardo en el id: " << id << endl;
         id++;
     }
 
