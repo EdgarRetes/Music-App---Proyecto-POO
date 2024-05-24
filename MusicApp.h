@@ -65,7 +65,7 @@ MusicApp::MusicApp(Usuario *users[1000])
         if (users[i] != nullptr)
         {
             id++;
-            cout << id << endl;
+            // cout << id << endl;
             // cout << "i: " << i << " dir: " << usuarios[i] << endl;
         }
     }
