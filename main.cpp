@@ -403,7 +403,7 @@ int main()
                 // Verifica si el usuario existe
                 if (app.login(usuario, contrasena))
                 {
-                    /*Si el usuario existe, se define un array de apunatdores del tipo Usuario que 
+                    /*Si el usuario existe, se define un array de apunatdores del tipo Usuario que
                     es igual a al array del objeto app
                     */
 
@@ -424,10 +424,12 @@ int main()
                         }
                     }
 
+                    delete usuarios;
                     break;
                 }
             }
         }
+
         else if (opcion == 2)
         {
             // Ingresan datos de un nuevo usuario
@@ -471,7 +473,7 @@ int main()
         else if (opcion == 3)
         {
             cout << "!Hasta la proxima!" << endl;
-            // Aquí implementar un proceso para liberar memoria
+            delete app.get_usuarios();
             return 0;
         }
         // El programa continua hasta obtener una respuesta válida
