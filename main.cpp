@@ -189,9 +189,9 @@ void cargar_playlists_csv(Usuario &user)
     return;
 }
 
-// Función interfaz de usuario que reciba una referencia de una variable tipo Usuario
+// Función interfaz de usuario que reciba un apuntador de una variable tipo Usuario
 
-void user_interface(Usuario &user)
+void user_interface(Usuario *user)
 {
     // Variable auxiliar para controlar los couts de la reproducción
     prints = 0;
@@ -203,7 +203,10 @@ void user_interface(Usuario &user)
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n"
-             << user.get_user() << ": " << user.get_plan() << endl;
+             << user->get_user() << ": " << user->get_plan() << endl;
+        string costo = user->costo(), npl = user->print_numpl();
+        cout << costo;
+        cout << npl << endl;
         cout << "\n1. Ver playlists";
         cout << "\n2. Anadir playlist";
         cout << "\n3. Borrar playlist";
@@ -218,7 +221,7 @@ void user_interface(Usuario &user)
             {
                 string playlist = "q";
                 bool check = false;
-                user.ver_Playlists();
+                user->ver_Playlists();
                 cout << "\nSeleccione una playlist (Escriba su nombre / 'q' para salir): ";
                 /*Se limpia la entrada haciendo que el programa
                 vuelva a solicitar entrada al usuario evitando errores.
@@ -232,13 +235,13 @@ void user_interface(Usuario &user)
                     break;
                 }
                 // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
-                for (int i = 0; i < user.get_playlists().size(); i++)
+                for (int i = 0; i < user->get_playlists().size(); i++)
                 {
-                    if (user.get_playlists()[i].get_nombre() == playlist)
+                    if (user->get_playlists()[i].get_nombre() == playlist)
                     {
                         check = true;
                         // Se manda la referencia del objeto playlist
-                        playlist_interface(&user.get_playlists()[i], user.get_user());
+                        playlist_interface(&user->get_playlists()[i], user->get_user());
                         break;
                     }
                 }
@@ -257,7 +260,7 @@ void user_interface(Usuario &user)
             cout << "Nombre de la playlist nueva (sin espacios): ";
             cin.ignore();
             getline(cin, nombre);
-            user.add_Playlist(nombre);
+            user->add_Playlist(nombre);
             cout << "(Presione ENTER para continuar)" << endl;
         }
 
@@ -267,14 +270,14 @@ void user_interface(Usuario &user)
         {
             string nombre;
             cout << "\nPlaylists: " << endl;
-            for (int i = 0; i < user.get_playlists().size(); i++)
+            for (int i = 0; i < user->get_playlists().size(); i++)
             {
-                cout << i + 1 << ". " << user.get_playlists()[i].get_nombre() << endl;
+                cout << i + 1 << ". " << user->get_playlists()[i].get_nombre() << endl;
             }
             cout << "\nNombre de la playlist a borrar: ";
             cin.ignore();
             getline(cin, nombre);
-            user.remove_Playlist(nombre);
+            user->remove_Playlist(nombre);
             cout << "(Presione ENTER para continuar)" << endl;
         }
         // Sale dle interfaz del usuario
@@ -404,19 +407,19 @@ int main()
                     por el método la cuál es de tipo Usuario *array[]
                     */
 
-                    Usuario **usuarios = app.get_usuarios();
+                    Usuario *usuarios = app.get_usuarios();
 
                     // Se recorre toda la matriz utilizando el método en la clase usuario para encontrar el usuario con el que se trabajará
 
                     for (int i = 0; i < 1000; i++)
                     {
-                        if (usuarios[i]->get_user() == usuario)
+                        if (usuarios[i].get_user() == usuario)
                         {
                             // Se utiliza el puntero al usuario como parámetro para cambiar directamente sus atributos y no cambiar sus copias
                             // Se llama la función para cargar las playlists del usuario en sus vectores playlists.
-                            cargar_playlists_csv(*usuarios[i]);
+                            cargar_playlists_csv(usuarios[i]);
                             // Una vez obtenidas sus playlists entra a la interfaz del usuario.
-                            user_interface(*usuarios[i]);
+                            user_interface(&usuarios[i]);
                             break;
                         }
                     }
