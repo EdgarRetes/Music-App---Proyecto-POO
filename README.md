@@ -54,6 +54,7 @@ Segunda entrega -
 - Se pueden añadir las mismas canciones a una playlist.
 - El buscador de canciones en la base de datos siempre regresa la primera opción y no todas las canciones con ese nombre para elegir.
 - Al poner una playlist que no existe se traba el programa.
+- Por alguna razón no corre en mac entonces tengo que revisar eso más adelante.
 
 ## Ejecución
 
