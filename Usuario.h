@@ -33,8 +33,8 @@ public:
     void ver_Playlists();
 
     // Estas dos funciones tendrán sobreescritura
-    string costo();
-    string print_numpl();
+    virtual string costo() = 0;
+    virtual string print_numpl() = 0;
 
     void set_user(string us)
     {
@@ -226,6 +226,15 @@ public:
     int get_anuncios_por_hora() { return anuncios_por_hora; }
 };
 
+string Basico::costo()
+{
+    return "El costo del usuario BASICO plan es de: $ " + to_string(costo_plan) + "\n";
+}
+string Basico::print_numpl()
+{
+    return "Numero de playlist maximas de usuario BASICO es de: " + to_string(maxnum_pl) + " playlists\n";
+}
+
 // Aún falta la implementación de los métodos específicos de esta clase
 // Hereda de Usuario
 class Premium : public Usuario
@@ -254,6 +263,15 @@ public:
 
     string get_descuentos() { return descuentos; }
 };
+
+string Premium::costo()
+{
+    return "El costo del usuario PREMIUM plan es de: $ " + to_string(costo_plan) + "\n";
+}
+string Premium::print_numpl()
+{
+    return "Numero de playlist maximas de usuario PREMIUM es de: " + to_string(maxnum_pl) + " playlists\n";
+}
 
 // Aún falta la implementación de los métodos específicos de esta clase
 // Hereda de Usuario
@@ -292,5 +310,14 @@ public:
     string get_descuentos() { return descuentos; }
     vector<string> get_canciones_nuevas() { return canciones_nuevas; }
 };
+
+string VIP::costo()
+{
+    return "El costo del usuario VIP plan es de: $ " + to_string(costo_plan) + "\n";
+}
+string VIP::print_numpl()
+{
+    return "Numero de playlist maximas de usuario VIP es de: " + to_string(maxnum_pl) + " playlists\n";
+}
 
 #endif
