@@ -3,7 +3,7 @@ Proyecto Integrador para la clase de Programación Orientada a Objetos
 
 ## ¿Qué hace?
 
-El programa simula una aplicación de música donde un usuario se puede registrar y acceder a su cuenta con un tipo de cuenta en específico a modo de suscripción. El usuario puede elegir entre la cuenta básica, premium o VIP dependiendo de las funcionalidades que deseé. Si el usuario elige el plan básico, este solo podra crear una playlist donde puede añadir la música que prefiera. En el plan premium puede tener hasta 5 playlist además de tener la posibilidad de descargar sus playlists para poder escucharlas sin conexión. Por último, el usuario VIP es capaz de tener hasta 12 playlists, descargar sus canciones y hacer sus playlists colaborativas con otro usuario del sistema.
+El programa simula una aplicación de música donde un usuario se puede registrar y acceder a su cuenta con un tipo de cuenta en específico a modo de suscripción. El usuario puede elegir entre la cuenta básica, premium o VIP dependiendo de las funcionalidades que deseé. Si el usuario elige el plan básico, este solo podra crear una playlist donde puede añadir la música que prefiera. En el plan premium puede tener hasta 5 playlist además de tener la posibilidad de descargar sus playlists para poder escucharlas sin conexión. Por último, el usuario VIP es capaz de tener hasta 12 playlists, descargar sus canciones y ver las canciones nuevas que tiene acceso exclusivo.
 
 ## ¿Cómo se construye?
 
@@ -28,13 +28,13 @@ El usuario que sea premium tiene la capacidad de tener hasta 5 playlists. El usu
 
 ##### .- VIP
 
-Por último, este usuario tiene la característica de poder escuchar canciones nuevas antes de que sean lanzadas al público, que están guardadas en su atributo canciones de tipo vector. Además contará con los decuentos del usuario Premium, tener hasta 12 playlists y la capacidad de descargar sus playlists.
+Por último, este usuario tiene la característica de poder escuchar canciones nuevas antes de que sean lanzadas al público, que están guardadas en su atributo canciones de tipo vector. Además contará con los descuentos del usuario Premium y tener hasta 12 playlists.
 ### - Playlist
 
 Esta clase también tiene una relación de composición como elemento hijo de la clase padre Usuario. Cada playlist va a tener un nombre y un vector con las canciones que contiene. Además lo que se puede hacer con cada una es reproducir, añadir canciones y eliminar canciones.
 
 El diagrama UML de esta estructura es el siguiente:
-![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/61eaf880-9431-4189-ac0b-489c81d96196)
+![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/bbff1148-acaa-41fe-b28d-7720922671b8)
 
 ## Limitantes
 
