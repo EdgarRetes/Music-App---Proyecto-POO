@@ -30,7 +30,7 @@ public:
     bool login(string nombre, string contrasena);
 
     // El return tiene que ser un apuntador de la variable Usuario *usuarios[]
-    Usuario *get_usuarios() { return *usuarios; }
+    Usuario **get_usuarios() { return usuarios; }
 
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario
     void set_usuarios(Usuario *new_usuarios[1000])
@@ -40,6 +40,7 @@ public:
             usuarios[i] = new_usuarios[i];
         }
     }
+    void set_id(int ids) { id = ids; }
 };
 
 // Constructor si no hay base de datos de usuarios

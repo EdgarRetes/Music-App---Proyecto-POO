@@ -226,6 +226,25 @@ public:
     int get_anuncios_por_hora() { return anuncios_por_hora; }
 };
 
+string Basico::poner_anuncio()
+{
+    // No se implementará el número de anuncios por hora como tal, más bien se generará un número aleatorio
+    // para determinar si se pondrá un anuncio o no. Como los anuncios son 5 por horas será una probabilidad de
+    // 1/5  de que salga un anuncio.
+
+    int add = rand() % anuncios_por_hora + 1;
+
+    if (add == 5)
+    {
+        return "Anuncio";
+    }
+
+    else
+    {
+        return "";
+    }
+}
+
 string Basico::costo()
 {
     return "El costo del usuario BASICO plan es de: $ " + to_string(costo_plan) + "\n";
@@ -245,13 +264,11 @@ private:
 public:
     Premium(string usuario, string password) : Usuario(usuario, password)
     {
-        descuentos = "decuentos";
+        descuentos = "Audifonos MusicApp: De $2,000 a $1,200\nSuscripcion anual: De $1,200 a $900\nCurso de musica: De $500 a $300\n";
         set_plan("PREMIUM");
         set_maxnum_pl(5);
         set_costo(150);
     }
-
-    string descargar_pl(string nombre);
     // Sobreescritura
     string costo();
     string print_numpl();
@@ -284,17 +301,16 @@ private:
 public:
     VIP(string usuario, string password) : Usuario(usuario, password)
     {
-        descuentos = "decuentos";
-        canciones_nuevas.push_back("Canciones Nuevas");
+        descuentos = "Audifonos MusicApp: De $2,000 a $1,200\nSuscripcion anual: De $1,200 a $900\nCurso de musica: De $500 a $300\nY MAS!! DESCUBRELOS EN NUESTRA PAGINA\n";
+        canciones_nuevas.push_back("HIT ME HARD AND SOFT - Billie Eilish");
+        canciones_nuevas.push_back("Dead Poets Society - Taylor Swift");
+        canciones_nuevas.push_back("The Craving - Twenty One Pilots");
         set_plan("VIP");
         set_maxnum_pl(12);
         set_costo(250);
     }
 
-    string descargar_pl(string nombre);
-    string hacer_colab(string user, string nombre);
     // Sobreescritura
-    string escuchar_canciones_nuevas();
     string costo();
     string print_numpl();
 
