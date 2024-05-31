@@ -638,21 +638,20 @@ int main()
                     por el método la cuál es de tipo Usuario *array[]
                     */
 
-                    Usuario **usuarios = app.get_usuarios();
+                    Usuario *usuarios = app.get_usuarios();
 
                     // Se recorre toda la matriz utilizando el método en la clase usuario para encontrar el usuario con el que se trabajará
 
                     for (int i = 0; i < 1000; i++)
                     {
-
-                        if (usuarios[i]->get_user() == usuario)
+                        if (usuarios[i].get_user() == usuario)
                         {
                             cout << "ok" << endl;
                             // Se utiliza el puntero al usuario como parámetro para cambiar directamente sus atributos y no cambiar sus copias
                             // Se llama la función para cargar las playlists del usuario en sus vectores playlists.
-                            cargar_playlists_csv(*usuarios[i]);
+                            cargar_playlists_csv(usuarios[i]);
                             // Una vez obtenidas sus playlists entra a la interfaz del usuario.
-                            user_interface(usuarios[i]);
+                            user_interface(&usuarios[i]);
                             break;
                         }
                     }
@@ -661,6 +660,7 @@ int main()
                 }
             }
         }
+
         else if (opcion == 2)
         {
             // Ingresan datos de un nuevo usuario
@@ -704,7 +704,7 @@ int main()
         else if (opcion == 3)
         {
             cout << "!Hasta la proxima!" << endl;
-            // Aquí implementar un proceso para liberar memoria
+            delete app.get_usuarios();
             return 0;
         }
         // El programa continua hasta obtener una respuesta válida
