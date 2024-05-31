@@ -30,7 +30,7 @@ public:
     bool login(string nombre, string contrasena);
 
     // El return tiene que ser un apuntador de la variable
-    Usuario *get_usuarios()
+    Usuario **get_usuarios()
     {
         // cout << "get 0: " << usuarios[0] << endl;
         // cout << "get 1: " << usuarios[1] << endl;
@@ -38,7 +38,7 @@ public:
         //  cout << usuarios[2] << endl;
 
         // Imprimi el tipo de dato para saber cual es mi tipo de variable de retorno
-        return *usuarios;
+        return usuarios;
     }
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario
     void set_usuarios(Usuario *new_usuarios[1000])
