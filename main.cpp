@@ -198,97 +198,325 @@ void user_interface(Usuario *user)
     // Menú
     while (true)
     {
-        /*Se limpia la entrada haciendo que el programa
-        vuelva a solicitar entrada al usuario evitando errores.*/
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "\n"
-             << user->get_user() << ": " << user->get_plan() << endl;
-        string costo = user->costo(), npl = user->print_numpl();
-        cout << costo;
-        cout << npl << endl;
-        cout << "\n1. Ver playlists";
-        cout << "\n2. Anadir playlist";
-        cout << "\n3. Borrar playlist";
-        cout << "\n4. Salir" << endl;
-        cout << "\n(Elige un numero): ";
-        cin >> opcion;
-
-        if (opcion == 1)
+        // Si el usuario es de tipo Básico hara la función
+        if (Basico *basico = dynamic_cast<Basico *>(user))
         {
-            // Otro menú para seleccionar la playlist
-            while (true)
+            string anuncio = basico->poner_anuncio();
+            if (anuncio == "Anuncio")
             {
-                string playlist = "q";
-                bool check = false;
-                user->ver_Playlists();
-                cout << "\nSeleccione una playlist (Escriba su nombre / 'q' para salir): ";
-                /*Se limpia la entrada haciendo que el programa
-                vuelva a solicitar entrada al usuario evitando errores.
-                Además se permite leer la entrada hasta que haya un salto de línea*/
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                getline(cin, playlist);
-                cout << "(Presione ENTER para continuar)" << endl;
-                if (playlist == "q")
+                cout << anuncio << " reproduciendose. Espere 5 segundos..." << endl;
+                this_thread::sleep_for(chrono::seconds(5));
+            }
+            /*Se limpia la entrada haciendo que el programa
+            vuelva a solicitar entrada al usuario evitando errores.*/
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n"
+                 << user->get_user() << ": " << user->get_plan() << endl;
+            string costo = user->costo(), npl = user->print_numpl();
+            cout << costo;
+            cout << npl << endl;
+            cout << "\n1. Ver playlists";
+            cout << "\n2. Anadir playlist";
+            cout << "\n3. Borrar playlist";
+            cout << "\n4. Salir" << endl;
+            cout << "\n(Elige un numero): ";
+            cin >> opcion;
+
+            if (opcion == 1)
+            {
+                // Otro menú para seleccionar la playlist
+                while (true)
                 {
-                    break;
-                }
-                // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
-                for (int i = 0; i < user->get_playlists().size(); i++)
-                {
-                    if (user->get_playlists()[i].get_nombre() == playlist)
+                    string playlist = "q";
+                    bool check = false;
+                    user->ver_Playlists();
+                    cout << "\nSeleccione una playlist (Escriba su nombre / 'q' para salir): ";
+                    /*Se limpia la entrada haciendo que el programa
+                    vuelva a solicitar entrada al usuario evitando errores.
+                    Además se permite leer la entrada hasta que haya un salto de línea*/
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, playlist);
+                    cout << "(Presione ENTER para continuar)" << endl;
+                    if (playlist == "q")
                     {
-                        check = true;
-                        // Se manda la referencia del objeto playlist
-                        playlist_interface(&user->get_playlists()[i], user->get_user());
                         break;
                     }
-                }
-                if (!check)
-                {
-                    cout << "\nNo existe esa playlist" << endl;
+                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    for (int i = 0; i < user->get_playlists().size(); i++)
+                    {
+                        if (user->get_playlists()[i].get_nombre() == playlist)
+                        {
+                            check = true;
+                            // Se manda la referencia del objeto playlist
+                            playlist_interface(&user->get_playlists()[i], user->get_user());
+                            break;
+                        }
+                    }
+                    if (!check)
+                    {
+                        cout << "\nNo existe esa playlist" << endl;
+                    }
                 }
             }
-        }
 
-        // Se añade playlist
+            // Se añade playlist
 
-        else if (opcion == 2)
-        {
-            string nombre;
-            cout << "Nombre de la playlist nueva (sin espacios): ";
-            cin.ignore();
-            getline(cin, nombre);
-            user->add_Playlist(nombre);
-            cout << "(Presione ENTER para continuar)" << endl;
-        }
-
-        // Se borra playlist
-
-        else if (opcion == 3)
-        {
-            string nombre;
-            cout << "\nPlaylists: " << endl;
-            for (int i = 0; i < user->get_playlists().size(); i++)
+            else if (opcion == 2)
             {
-                cout << i + 1 << ". " << user->get_playlists()[i].get_nombre() << endl;
+                string nombre;
+                cout << "Nombre de la playlist nueva (sin espacios): ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->add_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
             }
-            cout << "\nNombre de la playlist a borrar: ";
-            cin.ignore();
-            getline(cin, nombre);
-            user->remove_Playlist(nombre);
-            cout << "(Presione ENTER para continuar)" << endl;
+
+            // Se borra playlist
+
+            else if (opcion == 3)
+            {
+                string nombre;
+                cout << "\nPlaylists: " << endl;
+                for (int i = 0; i < user->get_playlists().size(); i++)
+                {
+                    cout << i + 1 << ". " << user->get_playlists()[i].get_nombre() << endl;
+                }
+                cout << "\nNombre de la playlist a borrar: ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->remove_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
+            }
+
+            // Sale del interfaz del usuario
+            else if (opcion == 4)
+            {
+                return;
+            }
+            // Repite el menú hasta que haya una opción válida
+            else
+            {
+                cout << "Elige una opcion valida" << endl;
+            }
         }
-        // Sale dle interfaz del usuario
-        else if (opcion == 4)
+        else if (Premium *premium = dynamic_cast<Premium *>(user))
         {
-            return;
+            /*Se limpia la entrada haciendo que el programa
+            vuelva a solicitar entrada al usuario evitando errores.*/
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n"
+                 << user->get_user() << ": " << user->get_plan() << endl;
+            string costo = user->costo(), npl = user->print_numpl();
+            cout << costo;
+            cout << npl << endl;
+            cout << "\n1. Ver playlists";
+            cout << "\n2. Anadir playlist";
+            cout << "\n3. Borrar playlist";
+            cout << "\n4. Ver descuentos";
+            cout << "\n5. Salir" << endl;
+            cout << "\n(Elige un numero): ";
+            cin >> opcion;
+
+            if (opcion == 1)
+            {
+                // Otro menú para seleccionar la playlist
+                while (true)
+                {
+                    string playlist = "q";
+                    bool check = false;
+                    user->ver_Playlists();
+                    cout << "\nSeleccione una playlist (Escriba su nombre / 'q' para salir): ";
+                    /*Se limpia la entrada haciendo que el programa
+                    vuelva a solicitar entrada al usuario evitando errores.
+                    Además se permite leer la entrada hasta que haya un salto de línea*/
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, playlist);
+                    cout << "(Presione ENTER para continuar)" << endl;
+                    if (playlist == "q")
+                    {
+                        break;
+                    }
+                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    for (int i = 0; i < user->get_playlists().size(); i++)
+                    {
+                        if (user->get_playlists()[i].get_nombre() == playlist)
+                        {
+                            check = true;
+                            // Se manda la referencia del objeto playlist
+                            playlist_interface(&user->get_playlists()[i], user->get_user());
+                            break;
+                        }
+                    }
+                    if (!check)
+                    {
+                        cout << "\nNo existe esa playlist" << endl;
+                    }
+                }
+            }
+
+            // Se añade playlist
+
+            else if (opcion == 2)
+            {
+                string nombre;
+                cout << "Nombre de la playlist nueva (sin espacios): ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->add_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
+            }
+
+            // Se borra playlist
+
+            else if (opcion == 3)
+            {
+                string nombre;
+                cout << "\nPlaylists: " << endl;
+                for (int i = 0; i < user->get_playlists().size(); i++)
+                {
+                    cout << i + 1 << ". " << user->get_playlists()[i].get_nombre() << endl;
+                }
+                cout << "\nNombre de la playlist a borrar: ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->remove_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
+            }
+
+            else if (opcion == 4)
+            {
+                string descuentos = premium->get_descuentos();
+                cout << descuentos << endl;
+            }
+
+            // Sale del interfaz del usuario
+            else if (opcion == 5)
+            {
+                return;
+            }
+            // Repite el menú hasta que haya una opción válida
+            else
+            {
+                cout << "Elige una opcion valida" << endl;
+            }
         }
-        // Repite el menú hasta que haya una opción válida
-        else
+        else if (VIP *vip = dynamic_cast<VIP *>(user))
         {
-            cout << "Elige una opcion valida" << endl;
+            /*Se limpia la entrada haciendo que el programa
+            vuelva a solicitar entrada al usuario evitando errores.*/
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "\n"
+                 << user->get_user() << ": " << user->get_plan() << endl;
+            string costo = user->costo(), npl = user->print_numpl();
+            cout << costo;
+            cout << npl << endl;
+            cout << "\n1. Ver playlists";
+            cout << "\n2. Anadir playlist";
+            cout << "\n3. Borrar playlist";
+            cout << "\n4. Ver descuentos";
+            cout << "\n5. Ver nuevos lanzamientos exclusivos";
+            cout << "\n6. Salir" << endl;
+            cout << "\n(Elige un numero): ";
+            cin >> opcion;
+
+            if (opcion == 1)
+            {
+                // Otro menú para seleccionar la playlist
+                while (true)
+                {
+                    string playlist = "q";
+                    bool check = false;
+                    user->ver_Playlists();
+                    cout << "\nSeleccione una playlist (Escriba su nombre / 'q' para salir): ";
+                    /*Se limpia la entrada haciendo que el programa
+                    vuelva a solicitar entrada al usuario evitando errores.
+                    Además se permite leer la entrada hasta que haya un salto de línea*/
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, playlist);
+                    cout << "(Presione ENTER para continuar)" << endl;
+                    if (playlist == "q")
+                    {
+                        break;
+                    }
+                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    for (int i = 0; i < user->get_playlists().size(); i++)
+                    {
+                        if (user->get_playlists()[i].get_nombre() == playlist)
+                        {
+                            check = true;
+                            // Se manda la referencia del objeto playlist
+                            playlist_interface(&user->get_playlists()[i], user->get_user());
+                            break;
+                        }
+                    }
+                    if (!check)
+                    {
+                        cout << "\nNo existe esa playlist" << endl;
+                    }
+                }
+            }
+
+            // Se añade playlist
+
+            else if (opcion == 2)
+            {
+                string nombre;
+                cout << "Nombre de la playlist nueva (sin espacios): ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->add_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
+            }
+
+            // Se borra playlist
+
+            else if (opcion == 3)
+            {
+                string nombre;
+                cout << "\nPlaylists: " << endl;
+                for (int i = 0; i < user->get_playlists().size(); i++)
+                {
+                    cout << i + 1 << ". " << user->get_playlists()[i].get_nombre() << endl;
+                }
+                cout << "\nNombre de la playlist a borrar: ";
+                cin.ignore();
+                getline(cin, nombre);
+                user->remove_Playlist(nombre);
+                cout << "(Presione ENTER para continuar)" << endl;
+            }
+
+            else if (opcion == 4)
+            {
+                string descuentos = vip->get_descuentos();
+                cout << descuentos << endl;
+            }
+
+            else if (opcion == 5)
+            {
+                vector<string> nuevo = vip->get_canciones_nuevas();
+                cout << "Escucha en nuestra pagina estos nuevos albums:" << endl;
+                cout << nuevo[0] << endl;
+                cout << nuevo[1] << endl;
+                cout << nuevo[2] << endl;
+                cout << "Y MAS!!!" << endl;
+            }
+
+            // Sale del interfaz del usuario
+            else if (opcion == 6)
+            {
+                return;
+            }
+            // Repite el menú hasta que haya una opción válida
+            else
+            {
+                cout << "Elige una opcion valida" << endl;
+            }
         }
     }
 }
@@ -341,16 +569,19 @@ int main()
             {
                 users[id] = new Basico(user[0], user[1], 5);
                 id++;
+                app.set_id(id);
             }
             else if (user[2] == "PREMIUM")
             {
                 users[id] = new Premium(user[0], user[1]);
                 id++;
+                app.set_id(id);
             }
             else if (user[2] == "VIP")
             {
                 users[id] = new VIP(user[0], user[1]);
                 id++;
+                app.set_id(id);
             }
             i++;
         }
@@ -403,18 +634,24 @@ int main()
                 // Verifica si el usuario existe
                 if (app.login(usuario, contrasena))
                 {
+                    /*Si el usuario existe, se define un puntero de tipo Usuario que apunta a la matriz regresada
+                    por el método la cuál es de tipo Usuario *array[]
+                    */
+
+                    Usuario **usuarios = app.get_usuarios();
 
                     // Se recorre toda la matriz utilizando el método en la clase usuario para encontrar el usuario con el que se trabajará
 
                     for (int i = 0; i < 1000; i++)
                     {
-                        if (app.get_usuarios()[i]->get_user() == usuario)
+                        if (usuarios[i]->get_user() == usuario)
                         {
+
                             // Se utiliza el puntero al usuario como parámetro para cambiar directamente sus atributos y no cambiar sus copias
                             // Se llama la función para cargar las playlists del usuario en sus vectores playlists.
-                            cargar_playlists_csv(*app.get_usuarios()[i]);
+                            cargar_playlists_csv(*usuarios[i]);
                             // Una vez obtenidas sus playlists entra a la interfaz del usuario.
-                            user_interface(app.get_usuarios()[i]);
+                            user_interface(usuarios[i]);
                             break;
                         }
                     }

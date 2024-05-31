@@ -40,7 +40,6 @@ public:
         // Imprimi el tipo de dato para saber cual es mi tipo de variable de retorno
         return usuarios;
     }
-
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario
     void set_usuarios(Usuario *new_usuarios[1000])
     {
@@ -49,6 +48,7 @@ public:
             usuarios[i] = new_usuarios[i];
         }
     }
+    void set_id(int ids) { id = ids; }
 };
 
 // Constructor si no hay base de datos de usuarios
