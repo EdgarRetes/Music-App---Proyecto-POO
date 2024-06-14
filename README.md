@@ -34,7 +34,8 @@ Por último, este usuario tiene la característica de poder escuchar canciones n
 Esta clase también tiene una relación de composición como elemento hijo de la clase padre Usuario. Cada playlist va a tener un nombre y un vector con las canciones que contiene. Además lo que se puede hacer con cada una es reproducir, añadir canciones y eliminar canciones.
 
 El diagrama UML de esta estructura es el siguiente:
-![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/bbff1148-acaa-41fe-b28d-7720922671b8)
+![MusicApp drawio](https://github.com/EdgarRetes/Music-App---Proyecto-POO/assets/113946434/a06270e3-d8c6-4430-9bab-54e0862c28c1)
+
 
 ## Limitantes
 
@@ -54,7 +55,10 @@ Segunda entrega -
 - Se pueden añadir las mismas canciones a una playlist.
 - El buscador de canciones en la base de datos siempre regresa la primera opción y no todas las canciones con ese nombre para elegir.
 - Al poner una playlist que no existe se traba el programa.
-- Por alguna razón no corre en mac entonces tengo que revisar eso más adelante.
+- Por alguna razón no corre en mac entonces tengo que revisar eso más adelante. (RESUELTO UTILIZANDO EL COMANDO DE LA TERMINAl MAS ABAJO)
+
+Tercera entrega -
+- No detecté ningún otro posible error
 
 Entrega final -
 - No hay validación de que un usuario pueda tener el número de playlists máximo que se estableció para cada tipo de usuario
