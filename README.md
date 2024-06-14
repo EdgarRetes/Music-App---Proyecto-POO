@@ -56,6 +56,9 @@ Segunda entrega -
 - Al poner una playlist que no existe se traba el programa.
 - Por alguna razón no corre en mac entonces tengo que revisar eso más adelante.
 
+Entrega final -
+- No hay validación de que un usuario pueda tener el número de playlists máximo que se estableció para cada tipo de usuario
+
 ## Ejecución
 
 1. Cuando se descarga el zip, se extraen los archivos y tienes que acceder a la carpeta desde la terminal. Dependiendo del folder donde se guarde usas el comando `cd Carpeta` hasta llegar a donde esté la carpeta del proyecto y accedes a ella del mismo modo:
@@ -74,3 +77,21 @@ g++ -std=c++11 main.cpp -o main
 ```
 ./main.exe
 ```
+
+## Referencias
+
+Ya que se usaron conceptos no vistos en clase, se referencían los conceptos investigados por cuenta propia
+
+- Threads:
+
+cplusplus(2023). Reference:<thread>:this_thread:sleep_for. https://cplusplus.com/reference/thread/this_thread/sleep_for/
+
+Sayan(2023). Multithreading in C++. Geeks for Geeks. https://www.geeksforgeeks.org/multithreading-in-cpp/
+
+- cin:
+
+nikhil(2024). cin in C++. https://www.geeksforgeeks.org/cin-in-c/
+
+- fstream:
+
+cplusplus(2023). Tutorials: C++ Language: Input/output with files. https://cplusplus.com/doc/tutorial/files/

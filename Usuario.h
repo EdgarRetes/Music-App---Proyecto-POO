@@ -1,3 +1,14 @@
+/*
+ *
+ * Proyecto Music App clase Usuario
+ * Edgar Martínez Retes
+ * A01706825
+ * 13/06/2024
+ * version : 67
+ * Esta clase defina objeto de tipo Usuario que contiene las clases heredadas
+ * Básico, Premium y VIP.
+ */
+
 #ifndef USUARIO_H
 #define USUARIO_H
 
@@ -12,6 +23,7 @@
 
 using namespace std;
 
+//Declaracion de clase Usuario que es abstracta
 class Usuario
 {
     // Protected porque tiene herencia
@@ -70,12 +82,31 @@ public:
     int get_costo_plan() { return costo_plan; }
 };
 
+
+/**
+ * Constructor Usuario con nombre de usuario y contraseña
+ * Asigna el atributo user como el parámetro usuario
+ * Asigna el atributo contraseña como password
+ * @param string nombre de usuario y contraseña
+ * @return
+ */
 Usuario::Usuario(string usuario, string password)
 {
     user = usuario;
     contrasena = password;
 }
 
+/**
+ * Constructor Usuario con nombre de usuario,
+ * contraseña y tipo de usuario.
+ * Asigna el atributo user como el parámetro usuario
+ * Asigna el atributo contraseña como password
+ * Asigna el atributo plan como el parámetro tipo
+ * Asigna el número máximo de playlists y
+ * el costo dependiendo del tipo de usuario
+ * @param string nombre de usuario, contraseña y tipo
+ * @return
+ */
 Usuario::Usuario(string usuario, string password, string tipo)
 {
     user = usuario;
@@ -99,7 +130,14 @@ Usuario::Usuario(string usuario, string password, string tipo)
     }
 }
 
-// Se añade al vector y también se actualiza el csv sobreescribiendolo
+/**
+ * add_Playlist añade una playlist al usuario con su nombre
+ * Se añade un objeto playlist al vector de Playlists
+ * Se añade al archivo csv la playlist para actualizar 
+ * la base de datos.
+ * @param string: nombre de la playlist
+ * @return
+ */
 void Usuario::add_Playlist(string nombre)
 {
     Playlist playlist(nombre);
@@ -128,7 +166,15 @@ void Usuario::add_Playlist(string nombre)
     return;
 }
 
-// Se quita del vector y también se actualiza el csv sobreescribiendolo
+/**
+ * remove_Playlist elimina una playlist del usuario
+ * Se encuentar el índice de la playlist con su nombre
+ * y se elimina el objeto en la posición del índice.
+ * Se crea un copia del csv sin la playlist y se sobreescribe
+ * el archivo para actualizar la base de datos.
+ * @param string: nombre de la playlist
+ * @return
+ */
 void Usuario::remove_Playlist(string nombre)
 {
     Playlist playlist(nombre);
@@ -178,7 +224,13 @@ void Usuario::remove_Playlist(string nombre)
     return;
 }
 
-// Se ven todas las playlists del usuario en la terminal
+/**
+ * ver_Playlists se muestran las playlists en la terminal
+ * Se itera por las playlists de usuario y se muestra
+ * el nombre y las canciones que contiene
+ * @param
+ * @return
+ */
 void Usuario::ver_Playlists()
 {
     if (playlists.empty())
@@ -197,8 +249,7 @@ void Usuario::ver_Playlists()
     }
 }
 
-// Aún falta la implementación de los métodos específicos de esta clase
-// Hereda de Usuario
+//Declaro clase Básico que hereda de Usuario
 class Basico : public Usuario
 {
 private:
@@ -226,6 +277,16 @@ public:
     int get_anuncios_por_hora() { return anuncios_por_hora; }
 };
 
+
+/**
+ * poner_anuncio es la función que determina si se pone
+ * una simulación de anuncio en la terminal o no.
+ * Se genera un número random en los usuarios básicos
+ * que determina si se pone un anuncio que regresa un valor de 
+ * retorno string al main que hace la simulación
+ * @param
+ * @return string: "Anuncio" o ""("Vacío")
+ */
 string Basico::poner_anuncio()
 {
     // No se implementará el número de anuncios por hora como tal, más bien se generará un número aleatorio
@@ -245,17 +306,30 @@ string Basico::poner_anuncio()
     }
 }
 
+/**
+ * costo es una función sobreescrita que muestra el costo del plan
+ * Solo regresa un string concatenado con el atributo costo_plan
+ * @param
+ * @return string: concatenar con atributo costo_plan
+ */
 string Basico::costo()
 {
     return "El costo del usuario BASICO plan es de: $ " + to_string(costo_plan) + "\n";
 }
+
+/**
+ * print_numpl es una función sobreescrita que muestra el número de
+ * playlist máxiams del tipo de usuario
+ * Solo regresa un string concatenado con el atributo maxnum_pl
+ * @param
+ * @return string: concatenar con atributo maxnum_pl
+ */
 string Basico::print_numpl()
 {
     return "Numero de playlist maximas de usuario BASICO es de: " + to_string(maxnum_pl) + " playlists\n";
 }
 
-// Aún falta la implementación de los métodos específicos de esta clase
-// Hereda de Usuario
+//Declaro clase Premium que hereda de Usuario
 class Premium : public Usuario
 {
 private:
@@ -281,17 +355,30 @@ public:
     string get_descuentos() { return descuentos; }
 };
 
+/**
+ * costo es una función sobreescrita que muestra el costo del plan
+ * Solo regresa un string concatenado con el atributo costo_plan
+ * @param
+ * @return string: concatenar con atributo costo_plan
+ */
 string Premium::costo()
 {
     return "El costo del usuario PREMIUM plan es de: $ " + to_string(costo_plan) + "\n";
 }
+
+/**
+ * print_numpl es una función sobreescrita que muestra el número de
+ * playlist máxiams del tipo de usuario
+ * Solo regresa un string concatenado con el atributo maxnum_pl
+ * @param
+ * @return string: concatenar con atributo maxnum_pl
+ */
 string Premium::print_numpl()
 {
     return "Numero de playlist maximas de usuario PREMIUM es de: " + to_string(maxnum_pl) + " playlists\n";
 }
 
-// Aún falta la implementación de los métodos específicos de esta clase
-// Hereda de Usuario
+//Declaro clase VIP que hereda de Usuario
 class VIP : public Usuario
 {
 private:
@@ -327,10 +414,24 @@ public:
     vector<string> get_canciones_nuevas() { return canciones_nuevas; }
 };
 
+/**
+ * costo es una función sobreescrita que muestra el costo del plan
+ * Solo regresa un string concatenado con el atributo costo_plan
+ * @param
+ * @return string: concatenar con atributo costo_plan
+ */
 string VIP::costo()
 {
     return "El costo del usuario VIP plan es de: $ " + to_string(costo_plan) + "\n";
 }
+
+/**
+ * print_numpl es una función sobreescrita que muestra el número de
+ * playlist máxiams del tipo de usuario
+ * Solo regresa un string concatenado con el atributo maxnum_pl
+ * @param
+ * @return string: concatenar con atributo maxnum_pl
+ */
 string VIP::print_numpl()
 {
     return "Numero de playlist maximas de usuario VIP es de: " + to_string(maxnum_pl) + " playlists\n";

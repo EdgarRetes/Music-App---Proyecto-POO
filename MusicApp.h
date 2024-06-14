@@ -1,7 +1,22 @@
+/*
+ *
+ * Proyecto Music App clase Music App
+ * Edgar Martínez Retes
+ * A01706825
+ * 14/06/2024
+ * version : 67
+ * Esta clase define objeto de tipo Music App que contiene el funcionamiento
+ * para registrar usuarios y acceder al usuario. Esta clase es utilizada por
+ * la función principal del programa y es parte del proyecto Music App.
+ */
+
 #ifndef MUSICAPP_H
 #define MUSICAPP_H
 
-// Se incluye el archivo Usuario para tener sus clases disponibles así como los archivos que incluye este archivo
+/*
+ * Se incluye el archivo Usuario para tener sus clases disponibles así como
+ * los archivos que incluye este archivo
+ */
 #include "Usuario.h"
 
 #include <iostream>
@@ -32,12 +47,6 @@ public:
     // El return tiene que ser un apuntador de la variable
     Usuario **get_usuarios()
     {
-        // cout << "get 0: " << usuarios[0] << endl;
-        // cout << "get 1: " << usuarios[1] << endl;
-        // cout << "get *users: " << typeid(&usuarios).name() << endl;
-        //  cout << usuarios[2] << endl;
-
-        // Imprimi el tipo de dato para saber cual es mi tipo de variable de retorno
         return usuarios;
     }
     // El parámetro tiene que ser un apuntador a otro array de apuntadores del tipo Usuario
@@ -51,10 +60,22 @@ public:
     void set_id(int ids) { id = ids; }
 };
 
-// Constructor si no hay base de datos de usuarios
+/**
+ * Constructor MusicApp vacío
+ * Asigna el atributo id = 0
+ * @param
+ * @return
+ */
 MusicApp::MusicApp() { id = 0; }
 
-// Constructor si hay base de datos de usuario
+/**
+ * Constructor MusicApp con array de apuntadores tipo usuario
+ * Asigna el atributo id = 0
+ * Se asignan los usuarios en el array del atributo con 
+ * los del parámetro que recibe
+ * @param Usuario * users[1000], debe de ser de objeto: Básico, Premium o VIP
+ * @return
+ */
 MusicApp::MusicApp(Usuario *users[1000])
 {
     id = 0;
@@ -65,16 +86,20 @@ MusicApp::MusicApp(Usuario *users[1000])
         if (users[i] != nullptr)
         {
             id++;
-            // cout << id << endl;
-            // cout << "i: " << i << " dir: " << usuarios[i] << endl;
         }
     }
 
-    // cout << usuarios[0] << endl;
-    // cout << usuarios[1] << endl;
 }
 
-// Método para registrar usuarios
+/**
+ * register_ registra usuarios nuevos en el array de usuarios
+ * Se añade al archivo csv el usuario para actualizar la base
+ * de datos.
+ * Luego se crea el usuario al array dependiendo su tipo,
+ * se agrega al array de usuarios y se aumenta el índice.
+ * @param string: nombre del usuario, contraseña y tipo (Básico, Premium o VIP)
+ * @return
+ */
 void MusicApp::register_(string nombre, string contrasena, string tipo)
 {
     // Registro en la base de datos csv
@@ -92,7 +117,10 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     escribir.open("usuarios.csv", ios::out | ios::app);
     escribir << nombre << "," << contrasena << "," << tipo << "\n";
 
-    // Dependiendo del tipo de usuario se crea ese objeto en el array dinámico y se añade el id para añadir el siguiente usuario en la siguiente posición
+    /*
+     * Dependiendo del tipo de usuario se crea ese objeto en el array dinámico
+     * y se añade el id para añadir el siguiente usuario en la siguiente posición
+    */
     if (tipo == "BASICO")
     {
         usuarios[id] = new Basico(nombre, contrasena, 5);
@@ -105,10 +133,7 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     }
     else if (tipo == "VIP")
     {
-        // cout << "Contenido antes: " << &usuarios[id] << endl;
         usuarios[id] = new VIP(nombre, contrasena);
-        // cout << "Contenido despues: " << &usuarios[id] << endl;
-        // cout << "Se guardo en el id: " << id << endl;
         id++;
     }
 
@@ -128,7 +153,13 @@ void MusicApp::register_(string nombre, string contrasena, string tipo)
     return;
 }
 
-// Acceso al usuario dependiendo de su nombre y contraseña
+/**
+ * login el usarui accede a su cuenta con su nombre y contraseña
+ * Se verifica que exista el usuario, luego se verifica que 
+ * coincida con la contraseña y regresa un booleano si se accedio o no
+ * @param string: nombre del usuario y contraseña
+ * @return bool que indica si se accedio o no
+ */
 bool MusicApp::login(string nombre, string contrasena)
 {
     // Se itera por todos los usuarios del array de usuarios

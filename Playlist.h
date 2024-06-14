@@ -1,3 +1,14 @@
+/*
+ *
+ * Proyecto Music App clase Playlist
+ * Edgar Martínez Retes
+ * A01706825
+ * 13/06/2024
+ * version : 67
+ * Esta clase defina objeto de tipo Playlist que se usa en
+ * los objetos Usuario.
+ */
+
 #ifndef PLAYLIST_H
 #define PLAYLIST_H
 
@@ -39,20 +50,48 @@ public:
     vector<string> get_canciones() { return canciones; }
 };
 
+/**
+ * Constructor Playlist con nombre de playlist
+ * Asigna el atributo nombre con el parámetro name
+ * @param string: nombre de playlist
+ * @return
+ */
 Playlist::Playlist(string name)
 {
     nombre = name;
 }
+
+/**
+ * Constructor Playlist con nombre de playlist
+ * y vector de canciones.
+ * Asigna el atributo nombre con el parámetro name
+ * Asigna el vector de canciones con el vector
+ * del parámetro songs
+ * @param string: nombre de playlist
+ *        vector<string>: vector de canciones
+ * @return
+ */
 Playlist::Playlist(string name, vector<string> songs)
 {
     nombre = name;
     canciones = songs;
 }
 
+/**
+ * add_song añade una canción al usuario con el nombre
+ * de la canción.
+ * Se lee el nombre de la canción y la busca en la base de datos
+ * Si la encuentra, la actualiza el csv de la playlist
+ * sobreescribiendolo con la nueva canción
+ * Se añade la canción al vector canciones
+ * @param string: nombre de la canción y nombre de usuario
+ * @return string: Dice si se añadio o no se encontró
+ */
 string Playlist::add_song(string name, string user)
 {
 
-    // Se crea un nuevo string sin espacios ni caracteres especiales para el buscador a partir de la cancion del usuario
+    /*Se crea un nuevo string sin espacios ni caracteres especiales para
+     el buscador a partir de la cancion del usuario*/
     transform(name.begin(), name.end(), name.begin(), ::tolower);
     string new_name;
     for (char c : name)
@@ -104,7 +143,8 @@ string Playlist::add_song(string name, string user)
 
             if (song[1] == new_name)
             {
-                // Si se encuentra la cancione en la base de datos igual se actualiza el archivo csv del usuario
+                /*Si se encuentra la cancion en la base de datos igual
+                 se actualiza el archivo csv del usuario*/
                 string pl, current;
                 bool check;
                 fstream leer2;
@@ -167,6 +207,16 @@ string Playlist::add_song(string name, string user)
     return "\nCancion no encontrada\n";
 }
 
+/**
+ * remove_song quita una canción al usuario con el índice
+ * de la canción.
+ * Se busca la canción en el vector canciones y
+ * se borra con el número de índice.
+ * Si la encuentra, la actualiza el csv de la playlist
+ * copiando el archivo menos esa canción y lo sobreescribe
+ * @param string: índice de la canción y nombre de usuario
+ * @return string: da a conocer si se borró
+ */
 string Playlist::remove_song(int song, string user)
 {
     // Se consigue el nombre de la canción a partir del index y se borra de el vector canciones
@@ -252,6 +302,20 @@ string Playlist::remove_song(int song, string user)
     return "\nSe borro la cancion " + current + " de la playlist " + nombre;
 }
 
+/**
+ * play simula la reproducción de las canciones
+ * en la terminal.
+ * Se itera sobre todas las cancione spara la reproducción
+ * Encuentra la duraciónd e la canción en el csv
+ * Con las funciones de los hilos (thread), se simula
+ * la reproducción.
+ * Con la información ingresada en el main a través de 
+ * el parámtro referenciado de prints, hace el proceso de
+ * cambiar de canciones y de salir del modo reproducción
+ * @param string:nombre de usuario
+ *        int: &prints salidas de la terminal mandadas desde el main
+ * @return
+ */
 void Playlist::play(string user, int &prints)
 {
     // Se itera sobre las canciones para reproducirlas

@@ -1,4 +1,20 @@
-// Se incluye el archivo MusicApp para tener sus clases disponibles así como los archivos que incluye este archivo
+/*
+ * Proyecto Music App main
+ * Edgar Martínez Retes
+ * A01706825
+ * 14/06/2024
+ *
+ * Este es un proyecto  para la clase TC1030 Programación Orientado a
+ * Objetos. Es un programa que permite registrar e ingresar a usuarios
+ * creados con diferentes tipos de planes. Los usuarios pueden crear playlists,
+ * añadir canciones, reproducir sus playlists, eliminar canciones y
+ * eliminar playlists
+ */
+
+/*
+ * Se incluye el archivo MusicApp para tener sus clases disponibles
+ * así como los archivos que incluye este archivo
+ */
 #include "MusicApp.h"
 
 #include <iostream>
@@ -46,7 +62,10 @@ int playing(Playlist playlist, string user)
     return 0;
 }
 
-// Función interfaz de playlist que reciba un apuntador a una variable del tipo Playlist y un string
+/*
+ * Función interfaz de playlist que reciba un apuntador a una variable
+ * del tipo Playlist y un string con el nombre de usuario
+ */
 
 void playlist_interface(Playlist *playlist, string user)
 {
@@ -96,6 +115,7 @@ void playlist_interface(Playlist *playlist, string user)
         else if (opcion == 3)
         {
             // Se crea un hilo para simular el proceso de reproducción en segundo plano con el detach
+            // Referencia en el README
             thread t(&Playlist::play, playlist, user, ref(prints));
             t.detach();
 
@@ -105,7 +125,10 @@ void playlist_interface(Playlist *playlist, string user)
                 // Se manda un apuntador con la playlist
                 int action = playing(*playlist, user);
 
-                // Si se pasa a la siguiente canción se cambia el valor de prints lo que hace que active una condición dentro del método
+                /*
+                 * Si se pasa a la siguiente canción se cambia el valor de prints lo que hace
+                 * que active una condición dentro del método
+                 */
                 if (action == 1)
                 {
                     prints = 1;
@@ -139,7 +162,8 @@ void playlist_interface(Playlist *playlist, string user)
     return;
 }
 
-// Función para cargar las playlists ya existentes en la base de datos del usuario
+/*Función para cargar las playlists ya existentes en la base de datos del usuario
+ pasando elparámetro por refernecia para acceder al objeto con su dirección*/
 
 void cargar_playlists_csv(Usuario &user)
 {
@@ -190,7 +214,6 @@ void cargar_playlists_csv(Usuario &user)
 }
 
 // Función interfaz de usuario que reciba un apuntador de una variable tipo Usuario
-
 void user_interface(Usuario *user)
 {
     // Variable auxiliar para controlar los couts de la reproducción
@@ -205,10 +228,12 @@ void user_interface(Usuario *user)
             if (anuncio == "Anuncio")
             {
                 cout << anuncio << " reproduciendose. Espere 5 segundos..." << endl;
+                // Referencia en el README
                 this_thread::sleep_for(chrono::seconds(5));
             }
             /*Se limpia la entrada haciendo que el programa
             vuelva a solicitar entrada al usuario evitando errores.*/
+            // Referencia en el README
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "\n"
@@ -243,7 +268,10 @@ void user_interface(Usuario *user)
                     {
                         break;
                     }
-                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    /*
+                     * Itera sobre las playlists del usuario hasta conseguir la playlist
+                     * correcta y entrar a su interfaz
+                     */
                     for (int i = 0; i < user->get_playlists().size(); i++)
                     {
                         if (user->get_playlists()[i].get_nombre() == playlist)
@@ -340,7 +368,10 @@ void user_interface(Usuario *user)
                     {
                         break;
                     }
-                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    /*
+                     * Itera sobre las playlists del usuario hasta conseguir la playlist
+                     * correcta y entrar a su interfaz
+                     */
                     for (int i = 0; i < user->get_playlists().size(); i++)
                     {
                         if (user->get_playlists()[i].get_nombre() == playlist)
@@ -444,7 +475,10 @@ void user_interface(Usuario *user)
                     {
                         break;
                     }
-                    // Itera sobre las playlists del usuario hasta conseguir la playlist correcta y entrar a su interfaz
+                    /*
+                     * Itera sobre las playlists del usuario hasta conseguir la playlist
+                     * correcta y entrar a su interfaz
+                     */
                     for (int i = 0; i < user->get_playlists().size(); i++)
                     {
                         if (user->get_playlists()[i].get_nombre() == playlist)
@@ -521,11 +555,12 @@ void user_interface(Usuario *user)
     }
 }
 
-// Main
-
+// Función main
 int main()
 {
     MusicApp app;
+
+    // Referencia en el README
     fstream file;
 
     // Si no existe un archivo de usuarios, va a construir el objeto app sin parámetros
@@ -545,8 +580,12 @@ int main()
         string line, word;
         int i = 0, id = 0;
 
-        // Lee el archivo línea por línea y se divide la linea por las comas agregándolos al vector user
-        // En el primer índice está su nombre, en el segundo su contraseña y en el último su tipo
+        /*
+         * Lee el archivo línea por línea y se divide la linea por
+         * las comas agregándolos al vector user
+         * En el primer índice está su nombre, en el segundo su contraseña
+         * y en el último su tipo
+         */
         while (getline(file, line))
         {
             user.clear();
@@ -563,8 +602,11 @@ int main()
                 break;
             }
 
-            // Casos para agregar los usuarios al array de Usuarios utilizando new
-            // Cada que se agrega un usuario se debe aumentar el índice para agregar el siguiente usuario en la siguiente posición
+            /*
+             * Casos para agregar los usuarios al array de Usuarios utilizando new
+             * Cada que se agrega un usuario se debe aumentar el índice para agregar el
+             * siguiente usuario en la siguiente posición
+             */
             if (user[2] == "BASICO")
             {
                 users[id] = new Basico(user[0], user[1], 5);
@@ -586,7 +628,10 @@ int main()
             i++;
         }
 
-        // Se checa si hay algún pointer a un usuario para crear el constructor de MusicApp con la variable de users
+        /*
+         * Se checa si hay algún pointer a un usuario para crear el constructor de MusicApp
+         * con la variable de users
+         */
         bool check = false;
 
         for (int k = 0; k < 1000; k++)
@@ -634,21 +679,28 @@ int main()
                 // Verifica si el usuario existe
                 if (app.login(usuario, contrasena))
                 {
-                    /*Si el usuario existe, se define un puntero de tipo Usuario que apunta a la matriz regresada
-                    por el método la cuál es de tipo Usuario *array[]
-                    */
+                    /*
+                     * Si el usuario existe, se define un puntero de tipo Usuario que
+                     * apunta a la matriz regresada
+                     * por el método la cuál es de tipo Usuario *array[]
+                     */
 
                     Usuario **usuarios = app.get_usuarios();
 
-                    // Se recorre toda la matriz utilizando el método en la clase usuario para encontrar el usuario con el que se trabajará
+                    /*
+                     * Se recorre toda la matriz utilizando el método en la clase usuario
+                     * para encontrar el usuario con el que se trabajará
+                     */
 
                     for (int i = 0; i < 1000; i++)
                     {
                         if (usuarios[i]->get_user() == usuario)
                         {
-
-                            // Se utiliza el puntero al usuario como parámetro para cambiar directamente sus atributos y no cambiar sus copias
-                            // Se llama la función para cargar las playlists del usuario en sus vectores playlists.
+                            /*
+                             * Se utiliza el puntero al usuario como parámetro para cambiar directamente
+                             * sus atributos y no cambiar sus copias.
+                             * Se llama la función para cargar las playlists del usuario en sus vectores playlists.
+                             */
                             cargar_playlists_csv(*usuarios[i]);
                             // Una vez obtenidas sus playlists entra a la interfaz del usuario.
                             user_interface(usuarios[i]);
@@ -715,12 +767,3 @@ int main()
     }
     return 0;
 }
-
-/*
-Limitantes:
-Se pueden crear usuarios con el mismo nombre
-Se pueden crear playlists con el mismo nombre
-Se pueden añadir las mismas canciones a una playlist
-El buscador de canciones en la base de datos siempre regresa la primera opción y no todas las canciones con ese nombre para elegir
-Al poner una playlist que no existe se traba el programa
-*/
